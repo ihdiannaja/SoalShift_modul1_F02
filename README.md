@@ -56,40 +56,49 @@ done
 ```
 * proses perulangan selesai
 
-***CRONTAB
+#### CRONTAB
 
 ```
 #nomor 1
 14 14 14 2 * /bin/bash /home/rye/sisop/soal1.sh
 ```
-At 14:14 on day-of-month 14 in February.
+* At 14:14 on day-of-month 14 in February.
 
 ```
 #14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
 ```
-At 14:14 on Friday in February
+* At 14:14 on Friday in February
 
 ## Soal 2
 ```
 #2a
-echo "----nomor 1----"
-awk -F, '{if($7 == "2012") i[$1]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR == 1 {print $2,$3}'
-Pada setiap field, jika pada kolom ke-7 (tahun) = 2012, maka setiap isi di dalam kolom ke-1 (negara) yang sama maka tambahkan nilai pada kolom ke-10 (kuantiti).
-Jika x terdapat dalam tabel i, maka print i[x] (kuantiti) dan x [negara].
-File bernama WA_Sales_Products_2012-14.csv
-Urutkan dari kuantiti terbanyak 
-Pilih record yang paling atas (kuantiti terbesar) 
-Cetak kolom ke-2 dan ke-3 dari hasil record tersebut.
 
+echo "----nomor 1----"
+
+awk -F, '{if($7 == "2012") i[$1]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR == 1 {print $2,$3}'
+```
+* Pada setiap field, jika pada kolom ke-7 (tahun) = 2012, maka ..
+* setiap isi di dalam kolom ke-1 (negara) yang sama maka tambahkan nilai pada kolom ke-10 (Quantity).
+* Jika x terdapat dalam tabel i, maka print i[x] (Quantity) dan x (Negara).
+* File bernama WA_Sales_Products_2012-14.csv
+* Urutkan dari kuantiti terbanyak 
+* Pilih record yang paling atas (kuantiti terbesar) 
+* Cetak kolom ke-2 dan ke-3 dari hasil record tersebut.
+
+```
 #2b
+
 echo "----nomor 2----"
+
 awk -F, '{if($1 == "United States" && $7 == "2012") i[$4]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3}'
-Pada setiap field, jika kolom ke-1 (nama negara) dan kolom ke-7 (tahun) = 2012, maka setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-4 (product line) yang sama akan dijumlah. 
-Kemudian print i[x] (Quantity) dan x(product line).
-File bernama WA_Sales_Products_2012-14.csv
-Urutkan dari kuantiti terbanyak 
-Pilih 3 record teratas (terbanyak)
-Cetak kolom ke-2 dan ke-3 (Product Line) dari hasil record tersebut.
+```
+* Pada setiap field, jika kolom ke-1 (nama negara) dan kolom ke-7 (tahun) = 2012, maka ..
+* Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-4 (product line) yang sama akan dijumlah. 
+* Kemudian print i[x] (Quantity) dan x(product line).
+* File bernama WA_Sales_Products_2012-14.csv
+* Urutkan dari kuantiti terbanyak 
+* Pilih 3 record teratas (terbanyak)
+* Cetak kolom ke-2 dan ke-3 (Product Line) dari hasil record tersebut.
 
 #2c
 echo "----nomor 3----"
