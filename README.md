@@ -13,44 +13,62 @@ unzip /home/rye/sisop/nature.zip -d /home/rye/sisop
 ```
 mkdir /home/rye/sisop/nature_decrypted
 ```
-membuat direktori bernama nature_decrypted di dalam direktori /home/rye/sisop/
+* membuat direktori bernama nature_decrypted di dalam direktori /home/rye/sisop/
 
 ```
 i="1"
 ```
-menginisialisasi variabel i = 1
+* menginisialisasi variabel i = 1
 
+```
 for photo in /home/rye/sisop/nature/*.jpg
 do
-untuk setiap file pada direktore nature yang berekstensi .jpg, lakukan ..
+```
+* untuk setiap file pada direktore nature yang berekstensi .jpg, lakukan ..
 
+```
 base64
-mengganti biner menjadi berbasis 64
+```
+* mengganti biner menjadi berbasis 64
 
+```
 -d $photo
-Decode file photo di folder nature
+```
+* Decode file photo di folder nature
 
+```
 | xxd -r 
-mengembalikan file hexadecimal menjadi file biner
+```
+* mengembalikan file hexadecimal menjadi file biner
 
+```
 > /home/rye/sisop/nature_decrypted/$i.jpg
-Output yang didapat diletakkan pada direktori nature_decrypted
+```
+* Output yang didapat diletakkan pada direktori nature_decrypted
 
+```
 i=$(($i + 1))
-melakukan perulangan pada setiap file berekstensi .jpg di folder nature
+```
+* melakukan perulangan pada setiap file berekstensi .jpg di folder nature
 
+```
 done
-proses perulangan selesai
+```
+* proses perulangan selesai
 
-CRONTAB
+***CRONTAB
 
+```
 #nomor 1
 14 14 14 2 * /bin/bash /home/rye/sisop/soal1.sh
+```
 At 14:14 on day-of-month 14 in February.
 
-#14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
-At 14:14 on Friday in February
 ```
+#14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
+```
+At 14:14 on Friday in February
+
 ## Soal 2
 ```
 #2a
