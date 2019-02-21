@@ -5,7 +5,7 @@ Jawaban dan Penjelasan Praktikum Modul 1 Sistem Operasi 2019.
 ``` 
 #!/bin/bash
 
-**unzip /home/rye/sisop/nature.zip -d /home/rye/sisop**
+unzip /home/rye/sisop/nature.zip -d /home/rye/sisop
 berfungsi untuk meng-unzip file nature.zip yang terletak pada direktori /home/rye/sisop 
 
 mkdir /home/rye/sisop/nature_decrypted
