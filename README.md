@@ -145,8 +145,8 @@ awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Outdoor Protection"
 ```
 SCRIPT
 awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/rye/sisop/modul1/syslogsoal5.log
-Menyeleksi dari folder /var/log/syslog yang mengandung kata “cron” atau “CRON”, dan tidak mengandung kata “sudo”.
 ```
+* Menyeleksi dari folder /var/log/syslog yang mengandung kata “cron” atau “CRON”, dan tidak mengandung kata “sudo”.
 * Dari hasil seleksi tersebut, diprint 12 hasil teratas.
 * Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
 
