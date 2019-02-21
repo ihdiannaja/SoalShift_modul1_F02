@@ -100,48 +100,59 @@ awk -F, '{if($1 == "United States" && $7 == "2012") i[$4]+=$10} END {for(x in i)
 * Pilih 3 record teratas (terbanyak)
 * Cetak kolom ke-2 dan ke-3 (Product Line) dari hasil record tersebut.
 
+```
 #2c
-echo "----nomor 3----"
-echo "--Personal Accessories: "
-awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Personal Accessories") i[$6]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'
-Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = Personal Accessories”, maka
-Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
-Kemudian print i[x] (Quantity) dan x (Product).
-File bernama WA_Sales_Products_2012-14.csv
-Urutkan dari kuantiti terbanyak 
-Pilih 3 record teratas (terbanyak)
-Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
 
+echo "----nomor 3----"
+
+echo "--Personal Accessories: "
+
+awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Personal Accessories") i[$6]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'
+```
+* Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = "Personal Accessories", maka ..
+* Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
+* Kemudian print i[x] (Quantity) dan x (Product).
+* File bernama WA_Sales_Products_2012-14.csv.
+* Urutkan dari kuantiti terbanyak.
+* Pilih 3 record teratas (terbanyak).
+* Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
+
+```
 echo "--Camping Equipment: "
 awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Camping Equipment") i[$6]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'
-Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = “Camping Equipment”, maka
-Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
-Kemudian print i[x] (Quantity) dan x (Product).
-File bernama WA_Sales_Products_2012-14.csv
-Urutkan dari kuantiti terbanyak 
-Pilih 3 record teratas (terbanyak)
-Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
+```
+* Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = "Camping Equipment", maka ..
+* Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
+* Kemudian print i[x] (Quantity) dan x (Product).
+* File bernama WA_Sales_Products_2012-14.csv.
+* Urutkan dari kuantiti terbanyak.
+* Pilih 3 record teratas (terbanyak).
+* Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
 
+```
 echo "--Outdoor Protection: "
 awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Outdoor Protection") i[$6]+=$10} END {for(x in i) {print i[x],x}}' WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'
-Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = “Outdoor Protection”, maka
-Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
-Kemudian print i[x] (Quantity) dan x (Product).
-File bernama WA_Sales_Products_2012-14.csv
-Urutkan dari kuantiti terbanyak 
-Pilih 3 record teratas (terbanyak)
-Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
 ```
+* Pada setiap field, jika kolom ke-1 (nama negara) = “United States” dan kolom ke-7 (tahun) = 2012 dan kolom ke-4 (Product Line) = "Outdoor Protection", maka ..
+* Setiap nilai di dalam kolom ke-10 (Quantity) dengan isi kolom ke-6 (Product) yang sama akan dijumlahkan.
+* Kemudian print i[x] (Quantity) dan x (Product).
+* File bernama WA_Sales_Products_2012-14.csv.
+* Urutkan dari kuantiti terbanyak.
+* Pilih 3 record teratas (terbanyak).
+* Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
+
 ## Soal 5
 ```
 SCRIPT
 awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/rye/sisop/modul1/syslogsoal5.log
 Menyeleksi dari folder /var/log/syslog yang mengandung kata “cron” atau “CRON”, dan tidak mengandung kata “sudo”.
-Dari hasil seleksi tersebut, diprint 12 hasil teratas.
-Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
+```
+* Dari hasil seleksi tersebut, diprint 12 hasil teratas.
+* Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
 
-CRONTAB
+### CRONTAB
+```
 #nomor 5
 #2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
-At every 6th minute from 2 through 30.
 ```
+* At every 6th minute from 2 through 30.
