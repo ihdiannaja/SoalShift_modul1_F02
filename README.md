@@ -150,7 +150,7 @@ awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/
 * Dari hasil seleksi tersebut, diprint 12 hasil teratas.
 * Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
 
-### CRONTAB
+#### CRONTAB
 ```
 #nomor 5
 #2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
