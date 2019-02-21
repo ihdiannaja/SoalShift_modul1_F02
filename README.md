@@ -4,46 +4,46 @@ Jawaban dan Penjelasan Praktikum Modul 1 Sistem Operasi 2019.
 ## Soal 1
 ```#!/bin/bash
 
-unzip /home/rye/sisop/nature.zip -d /home/rye/sisop```
+unzip /home/rye/sisop/nature.zip -d /home/rye/sisop
 berfungsi untuk meng-unzip file nature.zip yang terletak pada direktori /home/rye/sisop 
 
-```mkdir /home/rye/sisop/nature_decrypted```
+mkdir /home/rye/sisop/nature_decrypted
 membuat direktori bernama nature_decrypted di dalam direktori /home/rye/sisop/
 
-```i="1"
-menginisialisasi variabel i = 1```
+i="1"
+menginisialisasi variabel i = 1
 
-```for photo in /home/rye/sisop/nature/*.jpg
-do```
+for photo in /home/rye/sisop/nature/*.jpg
+do
 untuk setiap file pada direktore nature yang berekstensi .jpg, lakukan ..
 
-```base64```
+base64
 mengganti biner menjadi berbasis 64
 
-```-d $photo```
+-d $photo
 Decode file photo di folder nature
 
-```| xxd -r ```
+| xxd -r 
 mengembalikan file hexadecimal menjadi file biner
 
-```> /home/rye/sisop/nature_decrypted/$i.jpg```
+> /home/rye/sisop/nature_decrypted/$i.jpg
 Output yang didapat diletakkan pada direktori nature_decrypted
 
-```i=$(($i + 1))```
+i=$(($i + 1))
 melakukan perulangan pada setiap file berekstensi .jpg di folder nature
 
-```done ```
+done
 proses perulangan selesai
 
-`CRONTAB`
+CRONTAB
 
-```#nomor 1
-14 14 14 2 * /bin/bash /home/rye/sisop/soal1.sh```
+#nomor 1
+14 14 14 2 * /bin/bash /home/rye/sisop/soal1.sh
 At 14:14 on day-of-month 14 in February.
 
-```#14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh```
+#14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
 At 14:14 on Friday in February
-
+```
 ## Soal 2
 ```
 #2a
