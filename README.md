@@ -5,16 +5,19 @@ Jawaban dan Penjelasan Praktikum Modul 1 Sistem Operasi 2019.
 
 ```
 #!/bin/bash
+
 unzip /home/rye/sisop/nature.zip -d /home/rye/sisop
 ```
-berfungsi untuk meng-unzip file nature.zip yang terletak pada direktori /home/rye/sisop 
+-berfungsi untuk meng-unzip file nature.zip yang terletak pada direktori /home/rye/sisop
 
 ```
 mkdir /home/rye/sisop/nature_decrypted
 ```
 membuat direktori bernama nature_decrypted di dalam direktori /home/rye/sisop/
 
+```
 i="1"
+```
 menginisialisasi variabel i = 1
 
 for photo in /home/rye/sisop/nature/*.jpg
