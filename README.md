@@ -174,9 +174,9 @@ do
 ```                        
 * Jika pada folder /home/rye/sisop/nomor3 tidak terdapat file bernama password$ord.txt (contoh : password1.txt), maka ..
 * Membuat password baru yang terdiri dari :
-        * Huruf a-z, A-Z, dan angka 0-9.
-        * Tersusun atas 12 susunan karakter.
-        * Terdapat dalam 1 baris.
+        <br><li> Huruf a-z, A-Z, dan angka 0-9.
+        <br><li> Tersusun atas 12 susunan karakter.
+        <br><li> Terdapat dalam 1 baris.
 ```
                         while [ $k -lt $leng ]
 
