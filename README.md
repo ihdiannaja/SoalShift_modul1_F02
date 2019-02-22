@@ -174,9 +174,9 @@ do
 ```                        
 * Jika pada folder /home/rye/sisop/nomor3 tidak terdapat file bernama password$ord.txt (contoh : password1.txt), maka ..
 * Membuat password baru yang terdiri dari :
-        <br><li> Huruf a-z, A-Z, dan angka 0-9.
-        <br><li> Tersusun atas 12 susunan karakter.
-        <br><li> Terdapat dalam 1 baris.
+        <br>    1. Huruf a-z, A-Z, dan angka 0-9.
+        <br>    2. Tersusun atas 12 susunan karakter.
+        <br>    3. Terdapat dalam 1 baris.
 ```
                         while [ $k -lt $leng ]
 
@@ -195,6 +195,9 @@ do
                                         fi
                         k=$(($k+1))
                         done
+```
+* Perulangan ini berfungsi untuk memastikan bahwa password yang telah dibuat terdiri dari huruf A-Z, a-z, dan angka 0-9.
+```
                         if [ $bsr -gt 0 ] && [ $kcl -gt 0 ] && [ $angka -gt 0 ]
                         then
                                 l=1
@@ -214,6 +217,9 @@ do
                                 do
                                         let count2=$count2+1
                                 done
+```
+* Perulangan ini berfungsi untuk melakukan pengecekan pada folder /home/rye/sisop/nomor3, apakah isi file pada folder tersebut terdapat kombinasi password yang telah dibuat atau tidak. Agar tidak terdapat duplikasi password dalam satu folder. 
+```
                                 if [[ $count1 -le $count2 ]]
                                 then
                                         i=0
@@ -230,6 +236,7 @@ do
         fi
 done
 ```
+* Setelah password berhasil dibuat, maka password tersebut disimpan dalam file bernama password$ord.txt .
 
 ## Soal 5
 ```
