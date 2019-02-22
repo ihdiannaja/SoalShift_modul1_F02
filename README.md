@@ -79,7 +79,7 @@ awk -F, '{if($7 == "2012") i[$1]+=$10} END {for(x in i) {print i[x],x}}' WA_Sale
 ```
 * Pada setiap field, jika pada kolom ke-7 (tahun) = 2012, maka ..
 * setiap isi di dalam kolom ke-1 (negara) yang sama maka tambahkan nilai pada kolom ke-10 (Quantity).
-* Jika x terdapat dalam tabel i, maka print i[x] (Quantity) dan x (Negara).
+* Print i[x] (Quantity) dan x (Negara).
 * File bernama WA_Sales_Products_2012-14.csv
 * Urutkan dari kuantiti terbanyak 
 * Pilih record yang paling atas (kuantiti terbesar) 
@@ -255,7 +255,7 @@ kiri1=$(printf \\$(printf '%03o' $kiri1))
 ```
 * `kiri1=$(($key+97))` Inisialisasi variabel kiri1 = (key) + 97 . 
 * Misal sekarang adalah jam 10. Jadi kiri1 = (10) + 97 = 107 . 107 = nilai ascii dari huruf 'j' .
-* Berfungsi untuk mendapatkan batas kiri dari huruf kecil 'a-z'.
+* Berfungsi untuk mendapatkan batas kiri untuk pergeseran string.
 ```
 kanan1=$(printf '%d' "'$kiri1")
 kanan1=$(($kanan1-1))
@@ -266,16 +266,16 @@ kanan1=$(($kanan1-1))
 kanan1=$(printf \\$(printf '%03o' $kanan1))
 #echo $kanan1
 ```
-* `kanan1=$(printf '%d' "'$kiri1")` Inisialisasi variabel kanan1 = kiri1 . Misal kanan1 = 107 .
+* `kanan1=$(printf '%d' "'$kiri1")` Mendapatkan nilai desimal dari kiri1.
 * Lalu kanan1 = kanan1 - 1 . Nilai kanan1 saat ini menjadi 106 .
-* Jika kanan1 < 97 , maka kanan1 = 122 . Hal ini berguna apabila kanan1 = 97 atau 'a'. 
-* Berfungsi untuk mendapatkan batas kanan dari ascii huruf kecil 'a-z'.
+* Jika kanan1 < 97 , maka kanan1 = 122 . Hal ini berguna apabila kiri1 = 97 atau 'a'. 
+* Berfungsi untuk mendapatkan batas kanan untuk pergeseran string.
 ```
 kiri2=$(($key+65))
 kiri2=$(printf \\$(printf '%03o' $kiri2))
 #echo $kiri2
 ```
-* Aturan di atas berlaku pula untuk mencari batas kiri dari ascii huruf kapital (A-Z).
+* Aturan di atas berlaku pula untuk mencari batas kiri untuk pergeseran string saat terdapat huruf kapital (A-Z).
 ```
 kanan2=$(printf '%d' "'$kiri2")
 kanan2=$(($kanan2-1))
@@ -286,7 +286,7 @@ kanan2=$(($kanan2-1))
 kanan2=$(printf \\$(printf '%03o' $kanan2))
 #echo $kanan2
 ```
-* Aturan ini berlaku juga untuk mencari batas kanan dari ascii huruf kapital (A-Z).
+* Aturan ini berlaku juga untuk mencari batas kanan untuk pergeseran string saat terdapat huruf kapital (A-Z).
 ```
 hour=`date "+%H"`
 #echo $hour
@@ -318,9 +318,8 @@ key=`echo "$key" | bc`
 ```
 * Berfungsi untuk mendapatkan format jam dari nama file dan mengubah tipe datanya ke dalam bentuk integer . Misal didapatkan key = 10.
 ```
-key=$(($key-1))
-#echo $key
 kiri1=$((122-$key))
+kiri1=$(($kiri1+1))
         if [ $kiri1 -gt 122 ]
                 then
                 kiri1=97
@@ -328,10 +327,10 @@ kiri1=$((122-$key))
 kiri1=$(printf \\$(printf '%03o' $kiri1))
 #echo $kiri1
 ```
-* `key=$(($key-1))` Inisialisasi key = key -1 . Maka nilai key = 9 .
-* `kiri1=$((122-$key))` Inisialisasi kiri1 = 122 - (key) . Maka kiri1 = 122 - 9 = 113 .
-* Jika nilai kiri1 < 122 , maka nilai kiri1 diset menjadi 97 .
-* Berfungsi untuk mendapatkan batas kiri dari ascii huruf kecil 'a-z' .
+* `kiri1=$((122-$key))` Digunakan untuk mencari key baru. Karena pergeseran hanya bisa dilakukan ke kanan, jadi key baru didapatkan dari 122 (huruf z) - key lama. kiri1 = 122 - 10 = 112 .
+* `kiri1=$(($kiri1+1))` Batas kiri didapatkan dari key lama ditambah 1 .
+* Jika nilai kiri1 > 122 , maka nilai kiri1 diset menjadi 97 .
+* Berfungsi untuk mendapatkan batas kiri dari pergeseraan string jika ditemukan huruf kecil 'a-z' .
 ```
 kanan1=$(printf '%d' "'$kiri1")
 kanan1=$(($kanan1-1))
@@ -342,12 +341,13 @@ kanan1=$(($kanan1-1))
 kanan1=$(printf \\$(printf '%03o' $kanan1))
 #echo $kanan1
 ```
-* `kanan1=$(printf '%d' "'$kiri1")` Inisialisasi kanan1 = kiri1 . Sebagai contoh, kanan1 = 113 .
-* `kanan1=$(($kanan1-1))` Inisialisasi kanan1 -= 1 . Maka kanan1 = 112 .
+* `kanan1=$(printf '%d' "'$kiri1")` Mendapatkan nilai desimal dari kiri1 .
+* `kanan1=$(($kanan1-1))` Mencari batas kanan pergeseran string .
 * Jika kanan1 bernilai < 97 . Maka di set menjadi 122 .
-* Berfungsi untuk mendapatkan batas kanan dari ascii huruf kecil 'a-z'.
+* Berfungsi untuk mendapatkan batas kanan dari pergeseraan string jika ditemukan huruf kecil 'a-z'.
 ```
 kiri2=$((90-$key))
+kiri2=$(($kiri+1))
         if [ $kiri2 -gt 90 ]
                 then
                 kiri2=65
@@ -355,7 +355,7 @@ kiri2=$((90-$key))
 kiri2=$(printf \\$(printf '%03o' $kiri2))
 #echo $kiri2
 ```
-* Aturan di atas berlaku pula untuk mencari batas kiri dari ascii huruf kapital (A-Z).
+* Aturan di atas berlaku pula untuk mencari batas kiri dari pergeseraan string jika ditemukan huruf kapital (A-Z).
 ```
 kanan2=$(printf '%d' "'$kiri2")
 kanan2=$(($kanan2-1))
@@ -366,7 +366,7 @@ kanan2=$(($kanan2-1))
 kanan2=$(printf \\$(printf '%03o' $kanan2))
 #echo $kanan2
 ```
-* Aturan di atas berlaku juga untuk mencari batas kanan dari ascii huruf kapital (A-Z).
+* Aturan di atas berlaku untuk mencari batas kanan dari pergeseraan string jika ditemukan huruf kapital (A-Z).
 ```
 hour=`echo $1 | awk -F: '{print $1}'`
 minute=`echo $1 | awk '{print $1}' | awk -F: '{print $2}'`
@@ -378,9 +378,9 @@ year=`echo $1 | awk '{print $2}' | awk -F- '{print $3}' | awk -F. '{print $1}'`
 ```
 cat "$hour:$minute $datee-$month-$year".txt | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "$hour:$minute $datee-$month-$year-asli".txt
 ```
-* Hasil yang telah dienkripsi disimpan dalam folder /home/rye/sisop/ dan nama file dengan format jam:menit:tanggal:bulan:tahun.txt .
+* Hasil yang telah didekripsi disimpan dalam folder /home/rye/sisop/ dan nama file dengan format jam:menit:tanggal:bulan:tahun.txt .
 
-```CRONTAB 4 bubu
+#### CRONTAB 
 @hourly /bin/bash /home/rye/sisop/soal4enkripsi.sh
 ```
 * Crontab ini akan berfungsi setiap jam sekali.
@@ -390,7 +390,7 @@ SCRIPT
 awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/rye/sisop/modul1/syslogsoal5.log
 ```
 * Menyeleksi dari folder /var/log/syslog yang mengandung kata “cron” atau “CRON”, dan tidak mengandung kata “sudo”.
-* Dari hasil seleksi tersebut, diprint 12 hasil teratas.
+* Dari hasil seleksi tersebut, diprint 12 kolom pertama.
 * Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
 
 #### CRONTAB
