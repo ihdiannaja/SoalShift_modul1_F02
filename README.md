@@ -384,17 +384,18 @@ cat "$hour:$minute $datee-$month-$year".txt | tr [a-z] ["$kiri1"-za-"$kanan1"] |
 @hourly /bin/bash /home/rye/sisop/soal4enkripsi.sh
 ```
 * Crontab ini akan berfungsi setiap jam sekali.
-## Soal 5
+
 ```
-SCRIPT
+## Soal 5
+SCRIPT <br>
 awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/rye/sisop/modul1/syslogsoal5.log
 ```
 * Menyeleksi dari folder /var/log/syslog yang mengandung kata “cron” atau “CRON”, dan tidak mengandung kata “sudo”.
 * Dari hasil seleksi tersebut, diprint 12 kolom pertama.
 * Kemudian hasil tersebut diappend dalam file syslogsoal5.log dalam folder /home/rye/sisop/modul1/.
 
-#### CRONTAB
 ```
+#### CRONTAB
 2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
 ```
 * At every 6th minute from 2 through 30.
