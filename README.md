@@ -144,16 +144,24 @@ awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Outdoor Protection"
 ## Soal 3
 ```
 #!/bin/bash
+
 i=1
 j=1
 ord=1
 password=string
 value=string
+```
+* Inisialisasi i = 1, j = 1, ord = 1, password = string, value = string .
+```
 while [ $i -ne 0 ]
 do
         if [[ -f /home/rye/sisop/nomor3/password$ord.txt ]] 
         then
                 ord=$(($ord + 1))
+```
+* Dilakukan pengecekan pada folder /home/rye/sisop/nomor3. 
+* Jika pada folder tersebut terdapat file bernama password$ord.txt (contoh : password1.txt), maka ord += 1. 
+```
         else
                 while [ $j -ne 0 ]
                 do
@@ -163,7 +171,15 @@ do
                         angka=0
                         k=0
                         leng=${#password}
+```                        
+* Jika pada folder /home/rye/sisop/nomor3 tidak terdapat file bernama password$ord.txt (contoh : password1.txt), maka ..
+* Membuat password baru yang terdiri dari :
+        * Huruf a-z, A-Z, dan angka 0-9.
+        * Tersusun atas 12 susunan karakter.
+        * Terdapat dalam 1 baris.
+```
                         while [ $k -lt $leng ]
+
                         do
                                 if [[ "${password:$k:1}" == [A-Z] ]]
                                         then
