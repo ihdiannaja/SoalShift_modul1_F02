@@ -245,11 +245,18 @@ done
 
 key=`date "+%H"`
 key=`echo "$key" | bc`
-
+```
+* Inisialisasi key = date saat ini, dan hanya diambil jamnya saja.
+* Mengubah string jam menjadi integer
+```
 kiri1=$(($key+97))
 kiri1=$(printf \\$(printf '%03o' $kiri1))
-
 #echo $kiri1
+```
+* `kiri1=$(($key+97))` Inisialisasi variabel kiri1 = (key) + 97 . 
+* Misal sekarang adalah jam 10. Jadi kiri1 = (10) + 97 = 107 . 107 = nilai ascii dari huruf 'j' .
+* Berfungsi untuk mendapatkan batas kiri dari huruf kecil 'a-z'.
+```
 kanan1=$(printf '%d' "'$kiri1")
 kanan1=$(($kanan1-1))
         if [ $kanan1 -lt 97 ]
@@ -257,12 +264,19 @@ kanan1=$(($kanan1-1))
                 kanan1=122
         fi
 kanan1=$(printf \\$(printf '%03o' $kanan1))
-
 #echo $kanan1
+```
+* `kanan1=$(printf '%d' "'$kiri1")` Inisialisasi variabel kanan1 = kiri1 . Misal kanan1 = 107 .
+* Lalu kanan1 = kanan1 - 1 . Nilai kanan1 saat ini menjadi 106 .
+* Jika kanan1 < 97 , maka kanan1 = 122 . Hal ini berguna apabila kanan1 = 97 atau 'a'. 
+* Berfungsi untuk mendapatkan batas kanan dari ascii huruf kecil 'a-z'.
+```
 kiri2=$(($key+65))
 kiri2=$(printf \\$(printf '%03o' $kiri2))
-
 #echo $kiri2
+```
+* Aturan di atas berlaku pula untuk mencari batas kiri dari ascii huruf kapital (A-Z).
+```
 kanan2=$(printf '%d' "'$kiri2")
 kanan2=$(($kanan2-1))
         if [ $kanan2 -lt 65 ]
@@ -270,46 +284,55 @@ kanan2=$(($kanan2-1))
                 kanan2=90
         fi
 kanan2=$(printf \\$(printf '%03o' $kanan2))
-
 #echo $kanan2
+```
+* Aturan ini berlaku juga untuk mencari batas kanan dari ascii huruf kapital (A-Z).
+```
 hour=`date "+%H"`
-
 #echo $hour
+
 minute=`date "+%M"`
-
 #echo $minute
+
 datee=`date "+%d"`
-
 #echo $dates
+
 month=`date "+%m"`
-
 #echo $month
+
 year=`date "+%Y"`
-
 #echo $year
-
+```
+* Berfungsi untuk mendapatkan jam, menit, tanggal, bulan, dan tahun saat ini.
+```
 cat /var/log/syslog | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "/home/rye/sisop/$hour:$minute $datee-$month-$year".txt
 ```
+* Hasil yang telah dienkripsi disimpan dalam folder /home/rye/sisop/ dan nama file dengan format jam:menit:tanggal:bulan:tahun.txt . 
 #### DEKRIPSI
 ```
 #!/bin/bash
 
 key=`echo $1 | awk -F: '{print $1}'`
 key=`echo "$key" | bc`
-
 #echo $key
+```
+* Berfungsi untuk mendapatkan format jam dari nama file dan mengubah tipe datanya ke dalam bentuk integer . Misal didapatkan key = 10.
+```
 key=$(($key-1))
-
 #echo $key
-
 kiri1=$((122-$key))
         if [ $kiri1 -gt 122 ]
                 then
                 kiri1=97
         fi
 kiri1=$(printf \\$(printf '%03o' $kiri1))
-
 #echo $kiri1
+```
+* `key=$(($key-1))` Inisialisasi key = key -1 . Maka nilai key = 9 .
+* `kiri1=$((122-$key))` Inisialisasi kiri1 = 122 - (key) . Maka kiri1 = 122 - 9 = 113 .
+* Jika nilai kiri1 < 122 , maka nilai kiri1 diset menjadi 97 .
+* Berfungsi untuk mendapatkan batas kiri dari ascii huruf kecil 'a-z' .
+```
 kanan1=$(printf '%d' "'$kiri1")
 kanan1=$(($kanan1-1))
         if [ $kanan1 -lt 97 ]
@@ -317,16 +340,23 @@ kanan1=$(($kanan1-1))
                 kanan1=122
         fi
 kanan1=$(printf \\$(printf '%03o' $kanan1))
-
 #echo $kanan1
+```
+* `kanan1=$(printf '%d' "'$kiri1")` Inisialisasi kanan1 = kiri1 . Sebagai contoh, kanan1 = 113 .
+* `kanan1=$(($kanan1-1))` Inisialisasi kanan1 -= 1 . Maka kanan1 = 112 .
+* Jika kanan1 bernilai < 97 . Maka di set menjadi 122 .
+* Berfungsi untuk mendapatkan batas kanan dari ascii huruf kecil 'a-z'.
+```
 kiri2=$((90-$key))
         if [ $kiri2 -gt 90 ]
                 then
                 kiri2=65
         fi
 kiri2=$(printf \\$(printf '%03o' $kiri2))
-
 #echo $kiri2
+```
+* Aturan di atas berlaku pula untuk mencari batas kiri dari ascii huruf kapital (A-Z).
+```
 kanan2=$(printf '%d' "'$kiri2")
 kanan2=$(($kanan2-1))
         if [ $kanan2 -lt 65 ]
@@ -334,19 +364,26 @@ kanan2=$(($kanan2-1))
                 kanan2=90
         fi
 kanan2=$(printf \\$(printf '%03o' $kanan2))
-
 #echo $kanan2
+```
+* Aturan di atas berlaku juga untuk mencari batas kanan dari ascii huruf kapital (A-Z).
+```
 hour=`echo $1 | awk -F: '{print $1}'`
 minute=`echo $1 | awk '{print $1}' | awk -F: '{print $2}'`
 datee=`echo $1 | awk '{print $2}' | awk -F- '{print $1}'`
 month=`echo $1 | awk '{print $2}' | awk -F- '{print $2}'`
 year=`echo $1 | awk '{print $2}' | awk -F- '{print $3}' | awk -F. '{print $1}'`
-
+```
+* Berfungsi untuk mendapatkan jam, menit, tanggal, bulan, dan tahun berdasarkan nama file asal.
+```
 cat "$hour:$minute $datee-$month-$year".txt | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "$hour:$minute $datee-$month-$year-asli".txt
+```
+* Hasil yang telah dienkripsi disimpan dalam folder /home/rye/sisop/ dan nama file dengan format jam:menit:tanggal:bulan:tahun.txt .
 
-CRONTAB 4 bubu
+```CRONTAB 4 bubu
 @hourly /bin/bash /home/rye/sisop/soal4enkripsi.sh
 ```
+* Crontab ini akan berfungsi setiap jam sekali.
 ## Soal 5
 ```
 SCRIPT
