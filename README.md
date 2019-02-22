@@ -239,6 +239,7 @@ done
 * Setelah password berhasil dibuat, maka password tersebut disimpan dalam file bernama password$ord.txt .
 
 ## Soal 4
+#### ENKRIPSI
 ```
 #!/bin/bash
 
@@ -289,6 +290,7 @@ year=`date "+%Y"`
 
 cat /var/log/syslog | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "/home/rye/sisop/$hour:$minute $datee-$month-$year".txt
 ```
+#### DEKRIPSI
 ```
 #!/bin/bash
 
