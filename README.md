@@ -65,7 +65,7 @@ done
 * At 14:14 on day-of-month 14 in February.
 
 ```
-#14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
+14 14 * 2 5 /bin/bash /home/rye/sisop/soal1.sh
 ```
 * At 14:14 on Friday in February
 
@@ -395,7 +395,6 @@ awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/
 
 #### CRONTAB
 ```
-#nomor 5
-#2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
+2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
 ```
 * At every 6th minute from 2 through 30.
