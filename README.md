@@ -50,6 +50,8 @@ i=$(($i + 1))
 done
 ```
 * proses perulangan selesai
+* berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-13-42.png" width="600">
 
 #### CRONTAB
 * Dalam soal diminta bash script tersebut dijalankan ketika pukul 14:14 tanggal 14 Februari atau pukul 14:14 di hari Jumat pada bulan Februari. Ketikkan ``` crontab -e ``` pada terminal lalu tambahkan konfigurasi : 
@@ -109,7 +111,8 @@ awk -F, '{if($1 == "United States" && $7 == "2012" && $4 == "Personal Accessorie
 * Sort -nr digunakan untuk mengurutkan dari kuantiti terbanyak
 * NR <= 3 digunakan untuk memilih 3 record yang paling atas (kuantiti terbesar)
 * Cetak kolom ke-2, ke-3, dan ke-4 (Product) dari hasil record tersebut.
-
+* berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-16-11.png" width="600">
 
 ## Soal 3
 ```
@@ -203,6 +206,9 @@ do
 done
 ```
 * Jika sudah dipastikan bahwa password memenuhi kriteria, maka password akan disimpan pada direktori /home/rye/sisop/nomor3 dengan nama file sesuai urutan password dan dengan ekstensi .txt.
+* berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-33-56.png" width="600">
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-34-53.png" width="600">
 
 ## Soal 4
 #### ENKRIPSI
@@ -263,6 +269,9 @@ year=`date "+%Y"`
 cat /var/log/syslog | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "/home/rye/sisop/$hour:$minute $datee-$month-$year".txt
 ```
 * Digunakan untuk mengenkripsi isi file /var/log/syslog dan disimpan pada dirrektori /home/rye/sisop/ dengan format nama file /$hour:$minute $datee-$month-$year.
+* berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-35-26.png" width="600">
+
 #### DEKRIPSI
 ```
 #!/bin/bash
@@ -322,6 +331,8 @@ year=`echo $1 | awk '{print $2}' | awk -F- '{print $3}' | awk -F. '{print $1}'`
 cat "$hour:$minute $datee-$month-$year".txt | tr [a-z] ["$kiri1"-za-"$kanan1"] | tr [A-Z] ["$kiri2"-ZA-"$kanan2"] > "$hour:$minute $datee-$month-$year-asli".txt
 ```
 * Saat menjalankan script dekripsi, pemanggilan dilakukan dengan cara bash soal4dekripsi.sh nama_file.txt. Script diatas digunakan untuk mengambil isi file enkripsi, lalu menggeser tiap karakternya, lalu menyimpannya dengan format "$hour:$minute $datee-$month-$year-asli".txt
+* Berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-35-38.png" width="600">
 
 #### CRONTAB 
 @hourly /bin/bash /home/rye/sisop/soal4enkripsi.sh
@@ -344,3 +355,5 @@ awk ‘BEGIN{IGNORECASE=1} /cron/ && !/sudo/ && NF < 13’ /var/log/syslog >> /h
 2-30/6 * * * * /bin/bash /home/rye/sisop/soal5.sh
 ```
 * At every 6th minute from 2 through 30.
+* Berikut hasil setelah script dijalankan :
+<img src="https://github.com/ihdiannaja/SoalShift_modul1_F02/blob/master/Screenshot%20from%202019-03-02%2017-36-03.png" width="600">
